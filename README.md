@@ -9,7 +9,7 @@ Static site served by GitHub Pages from the `main` branch root. No build step.
   trailer, business email). An empty value renders the control as "coming soon"; fill it in and it
   goes live everywhere. On the Russian page, links to the game site and press kit point at its `/ru/`.
 - `assets/img/` — the `hope-*` images are cut from the HOPE: Survival trailer
-  (copied from the game site); `og.jpg` is the 1200×630 social card. The studio logo
+  (copied from the game site); `og-studio.jpg` is the 1200×630 social card (studio logo on the hero glow; renamed rather than overwritten so link previews do not serve a cached copy). The studio logo
   (`studio-logo.png` — full lockup, `studio-wordmark.png` — drop + THIRST for the header,
   `icon.png` / `apple-touch-icon.png`) is cut from the official YouTube channel avatar (900×900, light
   on black → transparent PNG). Replace with the vector source when it turns up. The site palette
