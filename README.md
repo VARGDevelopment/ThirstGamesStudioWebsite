@@ -38,6 +38,6 @@ then open http://localhost:8766/.
 ## Custom domain
 
 Set in **Settings → Pages → Custom domain**; GitHub then commits a `CNAME` file here. Then replace
-`https://vargdevelopment.github.io/ThirstGamesWebsite/` with the domain in both pages (canonical,
+`https://vargdevelopment.github.io/ThirstGamesStudioWebsite/` with the domain in both pages (canonical,
 hreflang, og/twitter tags, JSON-LD), `sitemap.xml` and `robots.txt`, and drop the `repo` prefix check
 in `404.html`.
