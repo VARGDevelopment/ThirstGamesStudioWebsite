@@ -14,7 +14,8 @@ Static site served by GitHub Pages from the `main` branch root. No build step.
   `icon.png` / `apple-touch-icon.png`) is cut from the official YouTube channel avatar (900×900, light
   on black → transparent PNG). Replace with the vector source when it turns up. The site palette
   (`--accent` etc.) follows the logo's ice-blue on near-black.
-- `assets/fonts/` — Oswald and Inter, latin + cyrillic subsets, self-hosted (SIL Open Font License).
+- `assets/fonts/` — Jost (headings, buttons, menu: thin, widely tracked caps to match the logo) and
+  Inter (body), latin + cyrillic subsets, self-hosted (SIL Open Font License).
 - `.nojekyll` — tells Pages to serve files as-is.
 
 ## Content rules
