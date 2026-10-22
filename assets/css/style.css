@@ -235,16 +235,16 @@ section[id] { scroll-margin-top: 72px; }
 .hero-bg {
   overflow: hidden;
   background:
-    radial-gradient(ellipse 45% 55% at 70% 58%, rgba(185, 203, 219, 0.14), transparent 70%),
-    radial-gradient(ellipse 90% 70% at 70% 58%, rgba(60, 84, 104, 0.22), transparent 75%),
+    radial-gradient(ellipse 45% 55% at 76% 66%, rgba(185, 203, 219, 0.14), transparent 70%),
+    radial-gradient(ellipse 90% 70% at 76% 66%, rgba(60, 84, 104, 0.22), transparent 75%),
     var(--bg);
 }
 
 /* Rings grow by width rather than scale, so the 1px line stays crisp at every size. */
 .hero-bg span {
   position: absolute;
-  left: 70%;
-  top: 58%;
+  left: 76%;
+  top: 66%;
   width: 0;
   aspect-ratio: 3 / 1;
   border: 1px solid rgba(200, 216, 230, 0.75);
@@ -283,11 +283,18 @@ section[id] { scroll-margin-top: 72px; }
 
 .hero .wrap { position: relative; }
 
-.hero-logo {
-  width: clamp(180px, 22vw, 260px);
-  margin: 0 0 clamp(28px, 4vw, 44px);
-  filter: drop-shadow(0 4px 24px rgba(0, 0, 0, 0.8));
+/* The studio logo floats over the centre of the rings; on narrow screens it would sit under the
+   headline, and the header already carries the wordmark, so it goes. */
+.hero-mark {
+  position: absolute;
+  left: 76%;
+  top: 42%;
+  width: clamp(240px, 24vw, 380px);
+  transform: translate(-50%, -50%);
+  filter: drop-shadow(0 6px 30px rgba(0, 0, 0, 0.7));
 }
+
+@media (max-width: 1199px) { .hero-mark { display: none; } }
 
 .hero h1 {
   max-width: 14ch;
