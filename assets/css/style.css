@@ -146,11 +146,11 @@ h3 { font-size: 1.1rem; font-weight: 400; letter-spacing: 0.16em; }
   justify-content: center;
   gap: 10px;
   min-height: 52px;
-  padding: 0 28px;
+  padding: 0 24px;
   border: 1px solid var(--accent);
   border-radius: 2px;
   font: 500 0.85rem/1 var(--font-head);
-  letter-spacing: 0.26em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   text-decoration: none;
   transition: background-color 0.15s, color 0.15s, border-color 0.15s;
@@ -171,6 +171,8 @@ h3 { font-size: 1.1rem; font-weight: 400; letter-spacing: 0.16em; }
 }
 
 .actions { display: flex; flex-wrap: wrap; gap: 12px; }
+
+@media (max-width: 480px) { .actions .btn { flex: 1 1 100%; } }
 
 /* Header */
 
@@ -304,7 +306,34 @@ section[id] { scroll-margin-top: 72px; }
   filter: drop-shadow(0 6px 30px rgba(0, 0, 0, 0.7));
 }
 
-@media (max-width: 1199px) { .hero-mark { display: none; } }
+.hero-drop { display: none; }
+
+/* Narrow screens: no room beside the headline, so the scene moves into the space above it and keeps
+   only the drop — the header already shows the full wordmark. */
+@media (max-width: 1199px) {
+  .hero-mark { display: none; }
+
+  .hero-bg {
+    background:
+      radial-gradient(ellipse 70% 40% at 50% 34%, rgba(185, 203, 219, 0.14), transparent 70%),
+      radial-gradient(ellipse 120% 60% at 50% 34%, rgba(60, 84, 104, 0.22), transparent 75%),
+      var(--bg);
+  }
+
+  .hero-bg span { left: 50%; top: 34%; }
+
+  .hero-drop {
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 34%;
+    width: clamp(52px, 9vw, 84px);
+    transform: translate(-50%, -112%);
+    filter: drop-shadow(0 4px 20px rgba(0, 0, 0, 0.7));
+  }
+
+  .hero-shade { background: linear-gradient(to bottom, transparent 55%, rgba(10, 12, 14, 0.6) 75%, var(--bg) 100%); }
+}
 
 .hero h1 {
   max-width: 15ch;
@@ -323,7 +352,7 @@ section[id] { scroll-margin-top: 72px; }
 
 .game {
   display: grid;
-  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
   align-items: center;
   gap: clamp(28px, 5vw, 64px);
   margin-top: 48px;
@@ -383,6 +412,9 @@ section[id] { scroll-margin-top: 72px; }
 .facts dd { margin: 6px 0 0; }
 .game-body .actions { margin-top: 28px; }
 
+/* When the column is too narrow for both buttons, each takes a full row instead of two uneven ones. */
+.game-body .actions .btn { flex: 1 1 auto; }
+
 .strip {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -441,20 +473,17 @@ section[id] { scroll-margin-top: 72px; }
   text-transform: uppercase;
 }
 
+/* Open columns on hairlines rather than filled cards — closer to the line work of the logo. */
 .pillars {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 1px;
-  margin: 64px 0 0;
+  gap: 32px 40px;
+  margin: 72px 0 0;
   padding: 0;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  overflow: hidden;
-  background: var(--line);
   list-style: none;
 }
 
-.pillars li { padding: 26px 24px; background: var(--bg-raised); }
+.pillars li { padding-top: 24px; border-top: 1px solid var(--line); }
 .pillars strong {
   display: block;
   margin-bottom: 8px;
@@ -465,9 +494,9 @@ section[id] { scroll-margin-top: 72px; }
 .pillars strong::before {
   content: "";
   display: block;
-  width: 24px;
+  width: 40px;
   height: 1px;
-  margin-bottom: 18px;
+  margin: -25px 0 24px;
   background: var(--accent);
 }
 .pillars span { color: var(--muted); font-size: 0.95rem; }
@@ -486,8 +515,7 @@ section[id] { scroll-margin-top: 72px; }
   flex-direction: column;
   padding: 28px 24px;
   border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: var(--bg-raised);
+  border-radius: 2px;
 }
 
 .contact p { flex: 1; margin: 10px 0 24px; color: var(--muted); }

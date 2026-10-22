@@ -11,7 +11,7 @@ Static site served by GitHub Pages from the `main` branch root. No build step.
 - `assets/img/` — the `hope-*` images are cut from the HOPE: Survival trailer
   (copied from the game site); `og-studio.jpg` is the 1200×630 social card (studio logo on the hero glow; renamed rather than overwritten so link previews do not serve a cached copy). The studio logo
   (`studio-logo.png` — full lockup, `studio-wordmark.png` — drop + THIRST for the header,
-  `icon.png` / `apple-touch-icon.png`) is cut from the official YouTube channel avatar (900×900, light
+  `studio-drop.png` — the drop alone for the hero on narrow screens, `icon.png` / `apple-touch-icon.png`) is cut from the official YouTube channel avatar (900×900, light
   on black → transparent PNG). Replace with the vector source when it turns up. The site palette
   (`--accent` etc.) follows the logo's ice-blue on near-black.
 - `assets/fonts/` — Jost (headings, buttons, menu: thin, widely tracked caps to match the logo) and
