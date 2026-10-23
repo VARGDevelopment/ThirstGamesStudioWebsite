@@ -36,4 +36,201 @@ if (header && hero) {
   }, { rootMargin: "-72px 0px 0px 0px" }).observe(hero);
 }
 
+// Motion stays off with reduced motion; videos also stay on their posters on data-saver or slow links.
+const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const connection = navigator.connection || {};
+const lightMode = connection.saveData === true || /(^|-)2g$|^3g$/.test(connection.effectiveType || "");
+
+// Hero water: rings on a dark surface, drawn as ellipses (circles seen at an angle).
+// A drop falls under the logo every few seconds, light rain lands elsewhere, the pointer leaves
+// small ripples and a click drops a big one. With reduced motion it is one still set of rings.
+const water = document.querySelector("[data-water]");
+if (hero && water && water.getContext) {
+  const ctx = water.getContext("2d");
+  const mark = document.querySelector(".hero-mark");
+  const FLAT = 0.3;
+  const rings = [];
+  let w = 0;
+  let h = 0;
+  let source = { x: 0, y: 0 };
+  let running = false;
+  let last = 0;
+  let nextDrop = 0;
+  let nextRain = 0;
+
+  const add = (x, y, strength, reach, speed) => rings.push({ x, y, r: 0, strength, reach, speed });
+
+  const draw = () => {
+    ctx.clearRect(0, 0, w, h);
+    ctx.lineWidth = 1;
+    for (const ring of rings) {
+      if (ring.r <= 0) continue;
+      const life = 1 - ring.r / ring.reach;
+      const alpha = ring.strength * life * Math.min(1, ring.r / 16);
+      ctx.strokeStyle = `rgba(200, 216, 230, ${alpha})`;
+      ctx.beginPath();
+      ctx.ellipse(ring.x, ring.y, ring.r, ring.r * FLAT, 0, 0, Math.PI * 2);
+      ctx.stroke();
+      // A fainter ring just behind gives the wave some body.
+      if (ring.r > 24) {
+        ctx.strokeStyle = `rgba(200, 216, 230, ${alpha * 0.35})`;
+        ctx.beginPath();
+        ctx.ellipse(ring.x, ring.y, ring.r * 0.86, ring.r * 0.86 * FLAT, 0, 0, Math.PI * 2);
+        ctx.stroke();
+      }
+    }
+  };
+
+  const still = () => {
+    rings.length = 0;
+    const reach = Math.min(w * 0.6, 760);
+    [0.12, 0.3, 0.5, 0.72, 0.94].forEach((k, i) => rings.push({ x: source.x, y: source.y, r: reach * k, strength: 0.9 - i * 0.12, reach: reach * 1.05 }));
+    draw();
+  };
+
+  const layout = () => {
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const box = water.getBoundingClientRect();
+    w = box.width;
+    h = box.height;
+    water.width = Math.round(w * dpr);
+    water.height = Math.round(h * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const m = mark && mark.getBoundingClientRect();
+    source = m && m.width
+      ? { x: m.left + m.width / 2 - box.left, y: m.bottom - box.top + Math.min(90, h * 0.09) }
+      : { x: w / 2, y: h * 0.55 };
+    if (reducedMotion) still();
+    else draw();
+  };
+
+  const tick = (now) => {
+    if (!running) return;
+    // rAF timestamps can trail performance.now() on the first frame; a negative step would shrink
+    // a ring below zero, and ellipse() throws on a negative radius.
+    const dt = Math.min(0.05, Math.max(0, (now - last) / 1000));
+    last = now;
+    if (now > nextDrop) {
+      add(source.x, source.y, 0.9, Math.min(w * 0.6, 760), 72);
+      nextDrop = now + 2600 + Math.random() * 1000;
+    }
+    if (now > nextRain) {
+      add(w * (0.06 + Math.random() * 0.88), h * (0.3 + Math.random() * 0.65), 0.3, 110 + Math.random() * 150, 46);
+      nextRain = now + 700 + Math.random() * 1500;
+    }
+    for (let i = rings.length - 1; i >= 0; i -= 1) {
+      const ring = rings[i];
+      ring.r += ring.speed * dt * (1 - 0.55 * (ring.r / ring.reach));
+      if (ring.r >= ring.reach * 0.98) rings.splice(i, 1);
+    }
+    draw();
+    requestAnimationFrame(tick);
+  };
+
+  const start = () => {
+    if (running || reducedMotion) return;
+    running = true;
+    last = performance.now();
+    requestAnimationFrame(tick);
+  };
+
+  new IntersectionObserver(([entry]) => {
+    if (entry.isIntersecting) start();
+    else running = false;
+  }).observe(hero);
+
+  if (!reducedMotion) {
+    // The first drop lands right away, with a couple of rings already spreading.
+    layout();
+    add(source.x, source.y, 0.9, Math.min(w * 0.6, 760), 72);
+    rings[rings.length - 1].r = Math.min(w * 0.6, 760) * 0.45;
+    add(source.x, source.y, 0.9, Math.min(w * 0.6, 760), 72);
+    rings[rings.length - 1].r = Math.min(w * 0.6, 760) * 0.15;
+    nextDrop = performance.now() + 1800;
+
+    let lastMove = { x: -999, y: -999, t: 0 };
+    const local = (e) => {
+      const box = water.getBoundingClientRect();
+      return { x: e.clientX - box.left, y: e.clientY - box.top };
+    };
+    hero.addEventListener("pointermove", (e) => {
+      const p = local(e);
+      const now = performance.now();
+      if (Math.hypot(p.x - lastMove.x, p.y - lastMove.y) > 46 && now - lastMove.t > 70) {
+        add(p.x, p.y, 0.32, 120, 60);
+        lastMove = { ...p, t: now };
+      }
+    });
+    hero.addEventListener("pointerdown", (e) => {
+      if (e.target.closest("a, button")) return;
+      const p = local(e);
+      add(p.x, p.y, 0.95, 420, 90);
+    });
+  }
+
+  let pending = false;
+  window.addEventListener("resize", () => {
+    if (pending) return;
+    pending = true;
+    requestAnimationFrame(() => { pending = false; layout(); });
+  });
+  if (mark && !mark.complete) mark.addEventListener("load", layout, { once: true });
+  window.addEventListener("load", layout, { once: true });
+  layout();
+}
+
+// Manifesto: the sentence is split into words that light up as it scrolls through the viewport.
+const reveal = document.querySelector("[data-reveal]");
+if (reveal) {
+  const words = [];
+  const split = (node) => {
+    [...node.childNodes].forEach((child) => {
+      if (child.nodeType !== Node.TEXT_NODE) { split(child); return; }
+      const frag = document.createDocumentFragment();
+      child.textContent.split(/(\s+)/).forEach((part) => {
+        if (!part) return;
+        if (/^\s+$/.test(part)) { frag.append(part); return; }
+        const span = document.createElement("span");
+        span.className = "w";
+        span.textContent = part;
+        words.push(span);
+        frag.append(span);
+      });
+      child.replaceWith(frag);
+    });
+  };
+  split(reveal);
+
+  const update = () => {
+    const box = reveal.getBoundingClientRect();
+    const vh = window.innerHeight;
+    const progress = Math.min(1, Math.max(0, (vh * 0.85 - box.top) / (box.height + vh * 0.25)));
+    const lit = Math.round(progress * words.length);
+    words.forEach((span, i) => span.classList.toggle("on", i < lit));
+  };
+
+  if (reducedMotion) words.forEach((span) => span.classList.add("on"));
+  else {
+    let queued = false;
+    window.addEventListener("scroll", () => {
+      if (queued) return;
+      queued = true;
+      requestAnimationFrame(() => { queued = false; update(); });
+    }, { passive: true });
+    update();
+  }
+}
+
+// Videos marked data-autoplay play only while on screen.
+const videos = [...document.querySelectorAll("video[data-autoplay]")];
+if (videos.length && !reducedMotion && !lightMode) {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(({ target, isIntersecting }) => {
+      if (isIntersecting) target.play().catch(() => {});
+      else target.pause();
+    });
+  }, { threshold: 0.15 });
+  videos.forEach((v) => observer.observe(v));
+}
+
 document.querySelectorAll("[data-year]").forEach((el) => { el.textContent = new Date().getFullYear(); });

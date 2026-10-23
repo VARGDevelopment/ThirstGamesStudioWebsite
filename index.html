@@ -30,7 +30,7 @@
   <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
 
   <link rel="preload" href="assets/fonts/jost-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="assets/css/style.css?v=202610222339">
+  <link rel="stylesheet" href="assets/css/style.css?v=20261023155208">
 
   <script type="application/ld+json">
   {
@@ -43,6 +43,7 @@
     "sameAs": ["https://discord.gg/fuRWEf5U7d"]
   }
   </script>
+  <script>document.documentElement.classList.add("js");</script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -62,115 +63,119 @@
 
   <main id="main">
     <section class="hero">
-      <div class="wrap hero-grid">
-        <div class="hero-text">
-          <h1>We make games about <em>holding on</em></h1>
+      <canvas class="water" data-water aria-hidden="true"></canvas>
+      <div class="hero-center">
+        <img class="hero-mark" src="assets/img/studio-logo.png" width="720" height="510" alt="Thirst Games Studio">
+      </div>
+      <div class="wrap hero-foot">
+        <h1>We make games about <em>holding on</em></h1>
+        <div>
           <p class="lead">An independent team of industry veterans building co-op survival games in Unreal Engine 5.</p>
           <div class="actions">
             <a class="btn btn-primary" href="#games">See our game</a>
             <a class="btn btn-ghost" data-link="discord" data-pending="Discord coming soon" href="#" target="_blank" rel="noopener">Join the Discord</a>
           </div>
         </div>
-        <div class="hero-visual" aria-hidden="true">
-          <span></span><span></span><span></span><span></span><span></span>
-          <img class="hero-mark" src="assets/img/studio-logo.png" width="720" height="510" alt="">
-          <img class="hero-drop" src="assets/img/studio-drop.png" width="196" height="252" alt="">
-        </div>
       </div>
     </section>
 
-    <section class="section" id="games">
-      <div class="wrap">
-        <p class="eyebrow">In development</p>
-        <h2>Our game</h2>
-
-        <article class="game">
-          <a class="game-cover" data-link="game" href="#" target="_blank" rel="noopener" aria-label="HOPE: Survival — game website">
-            <img src="assets/img/hope-cover.webp" width="800" height="450" alt="" loading="lazy">
-            <img class="game-logo" src="assets/img/hope-logo.webp" width="900" height="561" alt="HOPE: Survival" loading="lazy">
-          </a>
-          <div class="game-body">
-            <h3>HOPE: Survival</h3>
-            <p>Top-down co-op survival on a quarantined island. The infected hunt by sound. By day you scavenge for supplies, by night you hold the base against the horde you drew in.</p>
-            <dl class="facts">
-              <div><dt>Players</dt><dd>Solo or co-op 1–8</dd></div>
-              <div><dt>Platform</dt><dd>PC (Steam)</dd></div>
-              <div><dt>Engine</dt><dd>Unreal Engine 5</dd></div>
-              <div><dt>Release</dt><dd>To be announced</dd></div>
-            </dl>
-            <div class="actions">
-              <a class="btn btn-primary" data-link="game" href="#" target="_blank" rel="noopener">Visit the game site</a>
-              <a class="btn btn-ghost" data-link="trailer" href="#" target="_blank" rel="noopener">Watch the trailer</a>
-            </div>
-          </div>
-        </article>
-
-        <div class="strip">
-          <img src="assets/img/hope-horde.webp" width="800" height="450" alt="A horde in a warehouse yard" loading="lazy">
-          <img src="assets/img/hope-base.webp" width="800" height="450" alt="A fortified survivor camp" loading="lazy">
-          <img src="assets/img/hope-snow.webp" width="800" height="450" alt="A fight in the snow" loading="lazy">
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="studio">
+    <section class="section manifesto" id="studio">
       <div class="wrap">
         <p class="eyebrow">The studio</p>
-        <h2>Veterans, not first-timers</h2>
-
-        <div class="studio-grid">
-          <div>
-            <p>Thirst Games is a small independent team that has spent years making games at bigger studios — and decided to build the survival game we always wanted to play.</p>
-            <p>Engineering, art, design and production are all in-house. Our strength is deep Unreal Engine work: multiplayer, gameplay systems, combat and optimization.</p>
-          </div>
-          <div class="credits">
-            <h3>Where we come from</h3>
-            <ul>
-              <li>Mundfish</li>
-              <li>Playrix</li>
-              <li>Social Quantum</li>
-              <li>Alawar</li>
-            </ul>
-            <h3>What we've worked on</h3>
-            <ul>
-              <li>Atomic Heart</li>
-              <li>Beholder</li>
-              <li>Guns of Boom</li>
-              <li>INSOMNIA</li>
-              <li>Armored Warfare</li>
-            </ul>
-          </div>
-        </div>
-
-        <ul class="pillars">
-          <li><strong>Co-op first</strong><span>Games built for a squad from day one — and still whole when you play alone.</span></li>
-          <li><strong>Systems over scripts</strong><span>Threats that react to what you do, not to a timer. Make noise, and the world answers.</span></li>
-          <li><strong>Unreal Engine 5</strong><span>Modern rendering, networking and performance for a genre that has waited for them.</span></li>
+        <p data-reveal>We spent years making other people’s games — <em>Atomic Heart</em>, <em>Beholder</em>, <em>Guns of Boom</em>. Now we’re making the survival game we always wanted to play.</p>
+        <ul class="manifesto-notes">
+          <li><strong>Small and independent</strong>Engineering, art, design and production — all in-house.</li>
+          <li><strong>Deep in Unreal</strong>Multiplayer, gameplay systems, combat and optimization are what we do best.</li>
         </ul>
       </div>
     </section>
 
-    <section class="section" id="contact">
+    <section class="credits" aria-label="Where our team comes from and what it has worked on">
+      <div class="credits-row">
+        <div class="wrap"><p class="credits-label">Our team comes from</p></div>
+        <div class="marquee"><ul><li>Mundfish</li><li>Playrix</li><li>Social Quantum</li><li>Alawar</li></ul><ul aria-hidden="true"><li>Mundfish</li><li>Playrix</li><li>Social Quantum</li><li>Alawar</li></ul></div>
+      </div>
+      <div class="credits-row">
+        <div class="wrap"><p class="credits-label">And has worked on</p></div>
+        <div class="marquee"><ul><li>Atomic Heart</li><li>Beholder</li><li>Guns of Boom</li><li>INSOMNIA</li><li>Armored Warfare</li></ul><ul aria-hidden="true"><li>Atomic Heart</li><li>Beholder</li><li>Guns of Boom</li><li>INSOMNIA</li><li>Armored Warfare</li></ul></div>
+      </div>
+    </section>
+
+    <section class="game" id="games">
+      <video class="game-bg" data-autoplay muted loop playsinline preload="none" poster="assets/video/game.webp" aria-hidden="true">
+        <source src="assets/video/game-av1.mp4" type="video/mp4; codecs=&quot;av01.0.05M.08&quot;">
+        <source src="assets/video/game.mp4" type="video/mp4">
+      </video>
+      <div class="game-shade"></div>
+      <div class="wrap">
+        <p class="eyebrow">Our game · in development</p>
+        <h2><img class="game-logo" src="assets/img/hope-logo.webp" width="900" height="561" alt="HOPE: Survival" loading="lazy"></h2>
+        <p class="game-pitch">Top-down co-op survival on a quarantined island. The infected hunt by sound. By day you scavenge for supplies — and some nights, the horde you drew in comes for your base.</p>
+        <ul class="facts"><li>Solo or co-op 1–8</li><li>PC · Steam</li><li>Unreal Engine 5</li><li>Release TBA</li></ul>
+        <div class="actions">
+          <a class="btn btn-primary" data-link="game" href="#" target="_blank" rel="noopener">Visit the game site</a>
+          <a class="btn btn-ghost" data-link="trailer" href="#" target="_blank" rel="noopener">Watch the trailer</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section loops-section">
+      <div class="wrap">
+        <ul class="loops">
+          <li>
+            <video data-autoplay muted loop playsinline preload="none" poster="assets/video/feature-noise.webp" width="960" height="540" aria-label="An explosion draws a crowd of infected">
+              <source src="assets/video/feature-noise.mp4" type="video/mp4">
+            </video>
+            <h3>Noise is bait</h3>
+            <p>Gunshots, explosions, machines — the infected hear it all.</p>
+          </li>
+          <li>
+            <video data-autoplay muted loop playsinline preload="none" poster="assets/video/feature-night.webp" width="960" height="540" aria-label="Survivors holding their base at night among burning fires">
+              <source src="assets/video/feature-night.mp4" type="video/mp4">
+            </video>
+            <h3>They come back</h3>
+            <p>Survive one horde, and the next is worse.</p>
+          </li>
+          <li>
+            <video data-autoplay muted loop playsinline preload="none" poster="assets/video/feature-base.webp" width="960" height="540" aria-label="A workshop being built at the base">
+              <source src="assets/video/feature-base.mp4" type="video/mp4">
+            </video>
+            <h3>The last warm light</h3>
+            <p>Crafting stations, a furnace, gates and traps.</p>
+          </li>
+          <li>
+            <video data-autoplay muted loop playsinline preload="none" poster="assets/video/feature-coop.webp" width="960" height="540" aria-label="Survivors fighting their way across a parking lot">
+              <source src="assets/video/feature-coop.mp4" type="video/mp4">
+            </video>
+            <h3>Survive together</h3>
+            <p>Alone or with up to seven friends.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <p class="eyebrow">What we’re good at</p>
+        <h2>What we do best</h2>
+        <ul class="skills">
+          <li><strong>Multiplayer</strong><span>Online co-op for up to eight players — the networking is ours, end to end.</span></li>
+          <li><strong>Gameplay systems</strong><span>Survival, crafting and AI built as systems that react to each other — and to the player.</span></li>
+          <li><strong>Combat</strong><span>Melee and ranged fights that stay readable from a top-down camera.</span></li>
+          <li><strong>Optimization</strong><span>Large streamed worlds, tuned for a full squad on screen.</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section contact" id="contact">
       <div class="wrap">
         <p class="eyebrow">Contact</p>
-        <h2>Talk to us</h2>
-        <div class="contacts">
-          <div class="contact">
-            <h3>Business &amp; publishing</h3>
-            <p>Publishers, partners and platforms — write to us directly.</p>
-            <a class="btn btn-ghost" data-link="email" data-pending="Email coming soon" href="#">Email</a>
-          </div>
-          <div class="contact">
-            <h3>Press &amp; creators</h3>
-            <p>Screenshots, GIFs, the logo and the trailer for HOPE: Survival.</p>
-            <a class="btn btn-ghost" data-link="presskit" href="#" target="_blank" rel="noopener">Press kit</a>
-          </div>
-          <div class="contact">
-            <h3>Players</h3>
-            <p>Dev updates, playtests and a squad to play with.</p>
-            <a class="btn btn-primary" data-link="discord" data-pending="Discord coming soon" href="#" target="_blank" rel="noopener">Join the Discord</a>
-          </div>
-        </div>
+        <h2>Let’s talk</h2>
+        <ul class="contact-list">
+          <li><span>Business &amp; publishing</span><a data-link="email" data-pending="Email coming soon" href="#">Email</a></li>
+          <li><span>Press &amp; creators</span><a data-link="presskit" href="#" target="_blank" rel="noopener">Press kit</a></li>
+          <li><span>Players</span><a data-link="discord" data-pending="Discord coming soon" href="#" target="_blank" rel="noopener">Discord</a></li>
+        </ul>
       </div>
     </section>
   </main>
@@ -187,6 +192,6 @@
     </div>
   </footer>
 
-  <script src="assets/js/site.js?v=202610222339"></script>
+  <script src="assets/js/site.js?v=20261023155208"></script>
 </body>
 </html>
