@@ -58,7 +58,10 @@ if (hero && water && water.getContext) {
   let nextDrop = 0;
   let nextRain = 0;
 
-  const add = (x, y, strength, reach, speed) => rings.push({ x, y, r: 0, strength, reach, speed });
+  // Ring colours: sea teal, the logo's ice-blue and a cold violet.
+  const TINTS = ["116, 214, 232", "200, 216, 230", "155, 152, 255"];
+  const tint = () => TINTS[Math.floor(Math.random() * TINTS.length)];
+  const add = (x, y, strength, reach, speed, color = tint()) => rings.push({ x, y, r: 0, strength, reach, speed, color });
 
   const draw = () => {
     ctx.clearRect(0, 0, w, h);
@@ -67,13 +70,13 @@ if (hero && water && water.getContext) {
       if (ring.r <= 0) continue;
       const life = 1 - ring.r / ring.reach;
       const alpha = ring.strength * life * Math.min(1, ring.r / 16);
-      ctx.strokeStyle = `rgba(200, 216, 230, ${alpha})`;
+      ctx.strokeStyle = `rgba(${ring.color}, ${alpha})`;
       ctx.beginPath();
       ctx.ellipse(ring.x, ring.y, ring.r, ring.r * FLAT, 0, 0, Math.PI * 2);
       ctx.stroke();
       // A fainter ring just behind gives the wave some body.
       if (ring.r > 24) {
-        ctx.strokeStyle = `rgba(200, 216, 230, ${alpha * 0.35})`;
+        ctx.strokeStyle = `rgba(${ring.color}, ${alpha * 0.35})`;
         ctx.beginPath();
         ctx.ellipse(ring.x, ring.y, ring.r * 0.86, ring.r * 0.86 * FLAT, 0, 0, Math.PI * 2);
         ctx.stroke();
@@ -84,7 +87,7 @@ if (hero && water && water.getContext) {
   const still = () => {
     rings.length = 0;
     const reach = Math.min(w * 0.6, 760);
-    [0.12, 0.3, 0.5, 0.72, 0.94].forEach((k, i) => rings.push({ x: source.x, y: source.y, r: reach * k, strength: 0.9 - i * 0.12, reach: reach * 1.05 }));
+    [0.12, 0.3, 0.5, 0.72, 0.94].forEach((k, i) => rings.push({ x: source.x, y: source.y, r: reach * k, strength: 0.9 - i * 0.12, reach: reach * 1.05, color: TINTS[i % TINTS.length] }));
     draw();
   };
 

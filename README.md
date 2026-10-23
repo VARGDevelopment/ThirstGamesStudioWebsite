@@ -2,7 +2,7 @@
 
 Static site served by GitHub Pages from the `main` branch root. No build step.
 
-- `index.html` — studio page: hero (live water + logo), manifesto, credits marquee, HOPE: Survival
+- `index.html` — studio page: hero (live water + logo), manifesto with the team notes, HOPE: Survival
   over trailer footage, feature loops, expertise, contacts.
 - `ru/index.html` — Russian version; shares `assets/` with the English page. A text change goes into both.
 - `404.html` — self-contained "not found" page (no relative assets on purpose).
