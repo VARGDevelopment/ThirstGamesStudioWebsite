@@ -8,7 +8,7 @@ Static site served by GitHub Pages from the `main` branch root. No build step.
 - `404.html` — self-contained "not found" page (no relative assets on purpose).
 - `assets/js/site.js` — **all outbound links** (`LINKS`: game site, press kit, Steam, Discord,
   trailer, business email). An empty value renders the control as "coming soon"; fill it in and it
-  goes live everywhere. On the Russian page, links to the game site and press kit point at its `/ru/`.
+  goes live everywhere. On the Russian page, links to the game site (hopesurvival.com) and press kit point at its `/ru/`.
   Also the hero water (canvas: a drop under the logo every few seconds, light rain, ripples from the
   pointer, a big one on click), the manifesto words that light up on scroll, and on-screen-only video
   playback. With reduced motion the water is a still set of rings, the words are lit and videos stay

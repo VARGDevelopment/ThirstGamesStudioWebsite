@@ -1,7 +1,7 @@
 // All outbound links live here. An empty value renders the control as "coming soon".
 const LINKS = {
-  game: "https://vargdevelopment.github.io/HOPESurvivalWebsite/",
-  presskit: "https://vargdevelopment.github.io/HOPESurvivalWebsite/presskit/",
+  game: "https://hopesurvival.com/",
+  presskit: "https://hopesurvival.com/presskit/",
   steam: "",
   discord: "https://discord.gg/fuRWEf5U7d",
   trailer: "https://www.youtube.com/watch?v=NnqW2iyr3cw",
@@ -10,7 +10,12 @@ const LINKS = {
 
 // Russian pages point at the Russian versions of the game site.
 const RU = document.documentElement.lang === "ru";
-const localized = (key, url) => (RU && (key === "game" || key === "presskit") ? url.replace(/HOPESurvivalWebsite\//, "HOPESurvivalWebsite/ru/") : url);
+const localized = (key, url) => {
+  if (!RU || (key !== "game" && key !== "presskit")) return url;
+  const u = new URL(url);
+  u.pathname = `/ru${u.pathname}`;
+  return u.href;
+};
 
 // Buttons and links marked data-link="<key>" take their href from LINKS.
 document.querySelectorAll("[data-link]").forEach((el) => {
