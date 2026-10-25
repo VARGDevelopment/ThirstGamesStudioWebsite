@@ -64,8 +64,9 @@ if (hero && water && water.getContext) {
   let nextDrop = 0;
   let nextRain = 0;
 
-  // Ring colours: sea teal, the logo's ice-blue and a cold violet.
-  const TINTS = ["116, 214, 232", "200, 216, 230", "155, 152, 255"];
+  // Ring colours come from the theme (--ring-1..3 in style.css).
+  const css = getComputedStyle(document.documentElement);
+  const TINTS = [1, 2, 3].map((i) => css.getPropertyValue(`--ring-${i}`).trim());
   const tint = () => TINTS[Math.floor(Math.random() * TINTS.length)];
   const add = (x, y, strength, reach, speed, color = tint()) => rings.push({ x, y, r: 0, strength, reach, speed, color });
 

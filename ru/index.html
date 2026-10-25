@@ -28,7 +28,7 @@
   <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
 
   <link rel="preload" href="../assets/fonts/jost-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="../assets/css/style.css?v=20261025175738">
+  <link rel="stylesheet" href="../assets/css/style.css?v=20261025181601">
 
   <script type="application/ld+json">
   {
@@ -41,7 +41,11 @@
     "sameAs": ["https://discord.gg/fuRWEf5U7d"]
   }
   </script>
-  <script>document.documentElement.classList.add("js");</script>
+  <script>
+    document.documentElement.classList.add("js");
+    // Colour themes for comparison: ?theme=acid | sunset | neon (default: sea).
+    try { const theme = new URLSearchParams(location.search).get("theme"); if (theme) document.documentElement.dataset.theme = theme; } catch { /* old browser */ }
+  </script>
 </head>
 <body>
   <a class="skip-link" href="#main">К содержимому</a>
@@ -175,6 +179,6 @@
     </div>
   </footer>
 
-  <script src="../assets/js/site.js?v=20261025175738"></script>
+  <script src="../assets/js/site.js?v=20261025181601"></script>
 </body>
 </html>
