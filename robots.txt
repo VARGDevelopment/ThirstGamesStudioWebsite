@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://vargdevelopment.github.io/ThirstGamesStudioWebsite/sitemap.xml
+Sitemap: https://thirst.games/sitemap.xml

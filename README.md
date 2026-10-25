@@ -48,7 +48,15 @@ then open http://localhost:8766/.
 
 ## Custom domain
 
-Set in **Settings → Pages → Custom domain**; GitHub then commits a `CNAME` file here. Then replace
-`https://vargdevelopment.github.io/ThirstGamesStudioWebsite/` with the domain in both pages (canonical,
-hreflang, og/twitter tags, JSON-LD), `sitemap.xml` and `robots.txt`, and drop the `repo` prefix check
-in `404.html`.
+The site is served at **https://thirst.games/** (`CNAME` file, set in **Settings → Pages → Custom
+domain**). DNS at GoDaddy:
+
+- apex: `A` records `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`
+  (GoDaddy's "Parked" / "WebsiteBuilder Site" A record and domain forwarding must stay off)
+- `www`: `CNAME` → `vargdevelopment.github.io`
+- `TXT` `_github-pages-challenge-VARGDevelopment` — the domain is verified on the VARGDevelopment
+  account (github.com/settings/pages), so no other account can claim it. Keep the record.
+
+Absolute URLs in both pages (canonical, hreflang, og/twitter tags, JSON-LD), `sitemap.xml` and
+`robots.txt` point at the domain. The old `vargdevelopment.github.io/ThirstGamesStudioWebsite/`
+address redirects to it.

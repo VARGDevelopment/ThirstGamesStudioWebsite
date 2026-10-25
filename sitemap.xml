@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://vargdevelopment.github.io/ThirstGamesStudioWebsite/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://vargdevelopment.github.io/ThirstGamesStudioWebsite/"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://vargdevelopment.github.io/ThirstGamesStudioWebsite/ru/"/>
+    <loc>https://thirst.games/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://thirst.games/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://thirst.games/ru/"/>
   </url>
   <url>
-    <loc>https://vargdevelopment.github.io/ThirstGamesStudioWebsite/ru/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://vargdevelopment.github.io/ThirstGamesStudioWebsite/"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://vargdevelopment.github.io/ThirstGamesStudioWebsite/ru/"/>
+    <loc>https://thirst.games/ru/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://thirst.games/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://thirst.games/ru/"/>
   </url>
 </urlset>
