@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Thirst Games Studio — кооперативные игры на выживание на Unreal Engine 5</title>
   <meta name="description" content="Thirst Games Studio — независимая команда ветеранов индустрии. Делаем кооперативные игры на выживание на Unreal Engine 5. Сейчас в разработке — HOPE: Survival.">
-  <meta name="theme-color" content="#0a0c0e">
+  <meta name="theme-color" content="#0a0f18">
 
   <link rel="canonical" href="https://thirst.games/ru/">
   <link rel="alternate" hreflang="en" href="https://thirst.games/">
@@ -28,7 +28,7 @@
   <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
 
   <link rel="preload" href="../assets/fonts/jost-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="../assets/css/style.css?v=20261025181601">
+  <link rel="stylesheet" href="../assets/css/style.css?v=20261025182339">
 
   <script type="application/ld+json">
   {
@@ -43,8 +43,8 @@
   </script>
   <script>
     document.documentElement.classList.add("js");
-    // Colour themes for comparison: ?theme=acid | sunset | neon (default: sea).
-    try { const theme = new URLSearchParams(location.search).get("theme"); if (theme) document.documentElement.dataset.theme = theme; } catch { /* old browser */ }
+    // Colour themes for comparison: ?theme=<name> (default: acid); ?pick shows a switcher.
+    try { const theme = new URLSearchParams(location.search).get("theme"); if (theme && theme !== "acid") document.documentElement.dataset.theme = theme; } catch { /* old browser */ }
   </script>
 </head>
 <body>
@@ -179,6 +179,6 @@
     </div>
   </footer>
 
-  <script src="../assets/js/site.js?v=20261025181601"></script>
+  <script src="../assets/js/site.js?v=20261025182339"></script>
 </body>
 </html>

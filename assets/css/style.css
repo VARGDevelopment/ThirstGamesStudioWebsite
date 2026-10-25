@@ -39,55 +39,74 @@
 
 :root {
   --bg: #0a0f18;
-  --card: rgba(17, 25, 39, 0.82);
+  --card: rgba(15, 22, 35, 0.78);
   --line: #1f2b3c;
   --line-bright: #2c3b51;
   --fg: #eef3f8;
-  --muted: #8f9cb0;
+  --muted: #94a1b4;
   --ice: #b9cbdb;
-  /* Accent colours. The default theme is "sea"; others are picked with ?theme=<name> (see the
-     [data-theme] blocks below and the inline script in <head>). --ring-* are "r, g, b" triples the
-     hero water uses for its rings. */
-  --accent: #6fe0f0;
-  --accent-hover: #a6eef7;
-  --on-accent: #061218;
-  --accent-2: #9b98ff;
-  --glow-1: rgba(108, 96, 230, 0.10);
-  --glow-2: rgba(24, 140, 160, 0.10);
-  --ring-1: 116, 214, 232;
-  --ring-2: 200, 216, 230;
-  --ring-3: 155, 152, 255;
   --radius: 14px;
   --wrap: 1240px;
   --font-head: "Jost", "Century Gothic", "Futura", sans-serif;
   --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 
-/* Acid: lime with violet — loud indie energy. */
+/* Accent colours. The default is acid; the rest are picked with ?theme=<name> or the swatches that
+   ?pick shows (inline script in <head>, assets/js/site.js). --rgb-1 / --rgb-2 are the two accents as
+   "r, g, b" so glows can set their own alpha; --ring-* colour the hero water. */
+/* Acid (default): lime with violet — loud indie energy. */
+:root,
 [data-theme="acid"] {
   --accent: #c8ff3c;
   --accent-hover: #dcff7f;
   --on-accent: #0d1400;
   --accent-2: #8b6cff;
-  --glow-1: rgba(139, 108, 255, 0.16);
-  --glow-2: rgba(200, 255, 60, 0.07);
+  --rgb-1: 200, 255, 60;
+  --rgb-2: 139, 108, 255;
   --ring-1: 200, 255, 60;
   --ring-2: 185, 203, 219;
   --ring-3: 139, 108, 255;
 }
 
-/* Sunset: hot coral over amber — warm light on cold water, against the ice-blue logo. */
+/* Toxic: lime with hot orange. */
+[data-theme="toxic"] {
+  --accent: #b8ff2e;
+  --accent-hover: #d2ff7a;
+  --on-accent: #0d1400;
+  --accent-2: #ff7a1a;
+  --rgb-1: 184, 255, 46;
+  --rgb-2: 255, 122, 26;
+  --ring-1: 184, 255, 46;
+  --ring-2: 185, 203, 219;
+  --ring-3: 255, 122, 26;
+}
+
+/* Ultra: electric violet first, lime as the spark. */
+[data-theme="ultra"] {
+  --bg: #0c0a1a;
+  --accent: #9a7bff;
+  --accent-hover: #b7a2ff;
+  --on-accent: #0b0620;
+  --accent-2: #c8ff3c;
+  --rgb-1: 154, 123, 255;
+  --rgb-2: 200, 255, 60;
+  --ring-1: 154, 123, 255;
+  --ring-2: 185, 203, 219;
+  --ring-3: 200, 255, 60;
+}
+
+/* Sunset: hot coral over amber — warm light on cold water. */
 [data-theme="sunset"] {
   --bg: #0d0b17;
   --accent: #ff5c8a;
   --accent-hover: #ff8bab;
   --on-accent: #1d0611;
   --accent-2: #ffb648;
-  --glow-1: rgba(255, 92, 138, 0.14);
-  --glow-2: rgba(255, 182, 72, 0.08);
+  --rgb-1: 255, 92, 138;
+  --rgb-2: 255, 182, 72;
   --ring-1: 255, 92, 138;
-  --ring-2: 255, 182, 72;
-  --ring-3: 185, 203, 219;
+  --ring-2: 185, 203, 219;
+  --ring-3: 255, 182, 72;
 }
 
 /* Neon: magenta and electric blue — synthwave night. */
@@ -97,11 +116,38 @@
   --accent-hover: #ee94ff;
   --on-accent: #180520;
   --accent-2: #4f8dff;
-  --glow-1: rgba(228, 91, 255, 0.14);
-  --glow-2: rgba(79, 141, 255, 0.12);
+  --rgb-1: 228, 91, 255;
+  --rgb-2: 79, 141, 255;
   --ring-1: 228, 91, 255;
-  --ring-2: 79, 141, 255;
-  --ring-3: 185, 203, 219;
+  --ring-2: 185, 203, 219;
+  --ring-3: 79, 141, 255;
+}
+
+/* Crimson: blood red with gold. */
+[data-theme="crimson"] {
+  --bg: #100a0d;
+  --accent: #ff3b4f;
+  --accent-hover: #ff7482;
+  --on-accent: #1c0306;
+  --accent-2: #ffc247;
+  --rgb-1: 255, 59, 79;
+  --rgb-2: 255, 194, 71;
+  --ring-1: 255, 59, 79;
+  --ring-2: 185, 203, 219;
+  --ring-3: 255, 194, 71;
+}
+
+/* Sea: the first palette — teal and cold violet. */
+[data-theme="sea"] {
+  --accent: #6fe0f0;
+  --accent-hover: #a6eef7;
+  --on-accent: #061218;
+  --accent-2: #9b98ff;
+  --rgb-1: 111, 224, 240;
+  --rgb-2: 155, 152, 255;
+  --ring-1: 111, 224, 240;
+  --ring-2: 185, 203, 219;
+  --ring-3: 155, 152, 255;
 }
 
 * { box-sizing: border-box; }
@@ -109,12 +155,12 @@
 html { scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
-/* A faint grid over deep navy, with patches of sea light. */
+/* A faint grid over the dark base, with patches of accent light. */
 body {
   margin: 0;
   background:
-    radial-gradient(ellipse 50% 40% at 85% 35%, var(--glow-1), transparent 70%),
-    radial-gradient(ellipse 45% 35% at 10% 70%, var(--glow-2), transparent 70%),
+    radial-gradient(ellipse 50% 40% at 85% 35%, rgba(var(--rgb-2), 0.12), transparent 70%),
+    radial-gradient(ellipse 45% 35% at 10% 70%, rgba(var(--rgb-1), 0.07), transparent 70%),
     linear-gradient(rgba(150, 180, 220, 0.035) 1px, transparent 1px) 0 0 / 64px 64px,
     linear-gradient(90deg, rgba(150, 180, 220, 0.035) 1px, transparent 1px) 0 0 / 64px 64px,
     var(--bg);
@@ -122,6 +168,18 @@ body {
   color: var(--fg);
   font: 400 1rem/1.65 var(--font-body);
   -webkit-font-smoothing: antialiased;
+}
+
+/* Film grain over everything: kills the flat, empty look of large dark areas. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.55 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  opacity: 0.07;
+  mix-blend-mode: overlay;
 }
 
 img, video { display: block; max-width: 100%; height: auto; }
@@ -296,6 +354,26 @@ section[id] { scroll-margin-top: 72px; }
   overflow: hidden;
 }
 
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  background:
+    radial-gradient(closest-side at 72% 42%, rgba(var(--rgb-1), 0.22), transparent 70%),
+    radial-gradient(closest-side at 86% 70%, rgba(var(--rgb-2), 0.30), transparent 70%),
+    radial-gradient(closest-side at 18% 30%, rgba(var(--rgb-2), 0.16), transparent 70%),
+    radial-gradient(closest-side at 30% 90%, rgba(var(--rgb-1), 0.12), transparent 70%);
+  filter: blur(20px);
+  animation: aurora 26s ease-in-out infinite alternate;
+}
+
+@keyframes aurora {
+  from { transform: translate3d(-3%, -2%, 0) scale(1); }
+  to { transform: translate3d(3%, 3%, 0) scale(1.08); }
+}
+
+@media (prefers-reduced-motion: reduce) { .hero::before { animation: none; } }
+
 .water {
   position: absolute;
   inset: 0;
@@ -328,12 +406,40 @@ section[id] { scroll-margin-top: 72px; }
   justify-self: center;
   width: clamp(240px, 28vw, 420px);
   margin-top: -40px;
-  filter: drop-shadow(0 10px 50px rgba(0, 0, 0, 0.7));
+  filter: drop-shadow(0 0 40px rgba(var(--rgb-1), 0.28)) drop-shadow(0 10px 40px rgba(0, 0, 0, 0.6));
 }
 
 @media (max-width: 860px) {
   .hero-grid { grid-template-columns: minmax(0, 1fr); }
   .hero-mark { display: none; }
+}
+
+/* Games section: a blurred, saturated frame of the game sits behind the card, so the section takes
+   on the game's colours; it fades out at the top and bottom into the page. */
+#games { isolation: isolate; overflow: hidden; }
+
+#games::before,
+#games::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  -webkit-mask-image: linear-gradient(transparent, #000 22%, #000 78%, transparent);
+  mask-image: linear-gradient(transparent, #000 22%, #000 78%, transparent);
+}
+
+#games::before {
+  inset: -60px;
+  background: url("../img/hope/06-horde.webp") center / cover;
+  filter: blur(42px) saturate(1.6) brightness(0.55);
+  opacity: 0.75;
+}
+
+#games::after {
+  background:
+    radial-gradient(ellipse 60% 70% at 15% 40%, rgba(var(--rgb-2), 0.22), transparent 70%),
+    radial-gradient(ellipse 50% 60% at 90% 60%, rgba(var(--rgb-1), 0.14), transparent 70%),
+    linear-gradient(rgba(10, 12, 20, 0.35), rgba(10, 12, 20, 0.35));
 }
 
 /* Game card: big media with a strip of shots on the left, the facts on the right. */
@@ -346,7 +452,9 @@ section[id] { scroll-margin-top: 72px; }
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: var(--card);
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
 @media (max-width: 920px) { .game-card { grid-template-columns: minmax(0, 1fr); } }
@@ -364,8 +472,19 @@ section[id] { scroll-margin-top: 72px; }
 
 .game-view [hidden] { display: none; }
 
+.game-view::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 55% 60% at 18% 88%, rgba(0, 0, 0, 0.78), transparent 70%),
+    linear-gradient(to top, rgba(0, 0, 0, 0.55), transparent 45%);
+  pointer-events: none;
+}
+
 .game-logo-over {
   position: absolute;
+  z-index: 1;
   left: 4%;
   bottom: 6%;
   width: 34%;
@@ -557,3 +676,38 @@ html[lang="ru"] .follow a.is-pending::after { content: "скоро"; }
 .site-footer nav a { color: var(--fg); text-decoration: none; }
 .site-footer nav a:hover { color: var(--accent); }
 .site-footer a.is-pending { color: var(--muted); }
+
+/* Temporary palette picker (?pick), see assets/js/site.js. The swatch buttons carry data-theme, so
+   each one is drawn in its own theme's accent. */
+.theme-pick {
+  position: fixed;
+  left: 50%;
+  bottom: 16px;
+  z-index: 60;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  max-width: calc(100vw - 32px);
+  padding: 8px;
+  border: 1px solid var(--line-bright);
+  border-radius: 12px;
+  background: rgba(8, 10, 16, 0.9);
+  transform: translateX(-50%);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+.theme-pick button {
+  padding: 8px 12px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: var(--accent);
+  color: var(--on-accent);
+  font: 600 0.72rem/1 var(--font-head);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.theme-pick button[aria-pressed="true"] { border-color: #fff; box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.35); }

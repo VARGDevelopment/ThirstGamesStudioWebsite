@@ -64,10 +64,13 @@ if (hero && water && water.getContext) {
   let nextDrop = 0;
   let nextRain = 0;
 
-  // Ring colours come from the theme (--ring-1..3 in style.css).
-  const css = getComputedStyle(document.documentElement);
-  const TINTS = [1, 2, 3].map((i) => css.getPropertyValue(`--ring-${i}`).trim());
-  const tint = () => TINTS[Math.floor(Math.random() * TINTS.length)];
+  // Ring colours come from the current theme (--ring-1..3 in style.css), read live so a theme switch
+  // recolours the next rings.
+  const tints = () => {
+    const css = getComputedStyle(document.documentElement);
+    return [1, 2, 3].map((i) => css.getPropertyValue(`--ring-${i}`).trim());
+  };
+  const tint = () => { const list = tints(); return list[Math.floor(Math.random() * list.length)]; };
   const add = (x, y, strength, reach, speed, color = tint()) => rings.push({ x, y, r: 0, strength, reach, speed, color });
 
   const draw = () => {
@@ -94,7 +97,7 @@ if (hero && water && water.getContext) {
   const still = () => {
     rings.length = 0;
     const reach = Math.min(w * 0.5, 620);
-    [0.12, 0.3, 0.5, 0.72, 0.94].forEach((k, i) => rings.push({ x: source.x, y: source.y, r: reach * k, strength: 0.9 - i * 0.12, reach: reach * 1.05, color: TINTS[i % TINTS.length] }));
+    [0.12, 0.3, 0.5, 0.72, 0.94].forEach((k, i) => rings.push({ x: source.x, y: source.y, r: reach * k, strength: 0.9 - i * 0.12, reach: reach * 1.05, color: tints()[i % 3] }));
     draw();
   };
 
@@ -222,6 +225,31 @@ if (videos.length && !reducedMotion && !lightMode) {
     });
   }, { threshold: 0.15 });
   videos.forEach((v) => observer.observe(v));
+}
+
+// Theme picker for choosing the palette: shown only with ?pick in the address. Temporary — remove
+// together with the unused [data-theme] blocks once a palette is chosen.
+const THEMES = ["acid", "toxic", "ultra", "sunset", "neon", "crimson", "sea"];
+const params = new URLSearchParams(location.search);
+if (params.has("pick")) {
+  const bar = document.createElement("div");
+  bar.className = "theme-pick";
+  THEMES.forEach((name) => {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.textContent = name;
+    b.dataset.theme = name;
+    b.addEventListener("click", () => {
+      if (name === "acid") delete document.documentElement.dataset.theme;
+      else document.documentElement.dataset.theme = name;
+      params.set("theme", name);
+      history.replaceState(null, "", `?${params}`);
+      bar.querySelectorAll("button").forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
+    });
+    b.setAttribute("aria-pressed", String((document.documentElement.dataset.theme || "acid") === name));
+    bar.append(b);
+  });
+  document.body.append(bar);
 }
 
 document.querySelectorAll("[data-year]").forEach((el) => { el.textContent = new Date().getFullYear(); });

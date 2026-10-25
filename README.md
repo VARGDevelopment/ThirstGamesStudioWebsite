@@ -22,8 +22,11 @@ Static site served by GitHub Pages from the `main` branch root. No build step.
   rather than overwritten so link previews do not serve a cached copy). The studio logo
   (`studio-logo.png` — full lockup, `studio-wordmark.png` — drop + THIRST for the header and footer,
   `icon.png` / `apple-touch-icon.png`) is cut from the official YouTube channel avatar (900×900,
-  light on black → transparent PNG). Replace with the vector source when it turns up. Palette: deep
-  navy with a faint grid, sea teal `--aqua` as the accent, cold violet `--violet`, the logo's ice-blue.
+  light on black → transparent PNG). Replace with the vector source when it turns up.
+- Palette: dark base with a faint grid and film grain, accents in tokens (`--accent`, `--accent-2`,
+  `--rgb-1/2`, `--ring-1..3`). Default theme is acid (lime + violet); `toxic`, `ultra`, `sunset`,
+  `neon`, `crimson`, `sea` are there for choosing — open `?pick` for a switcher or `?theme=<name>`.
+  Once a palette is chosen, drop the other `[data-theme]` blocks, the picker in `site.js` and its CSS.
 - `assets/fonts/` — Jost (headings, buttons, labels; one variable file covers weights 300–700) and
   Inter (body), latin + cyrillic subsets, self-hosted (SIL Open Font License).
 - `.nojekyll` — tells Pages to serve files as-is.
