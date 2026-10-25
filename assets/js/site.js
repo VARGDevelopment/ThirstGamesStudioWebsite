@@ -5,6 +5,7 @@ const LINKS = {
   steam: "",
   discord: "https://discord.gg/fuRWEf5U7d",
   trailer: "https://www.youtube.com/watch?v=NnqW2iyr3cw",
+  youtube: "https://www.youtube.com/channel/UCL0GrbSQ1-tZCWuA8oVqLtw",
   email: "",
 };
 
@@ -91,7 +92,7 @@ if (hero && water && water.getContext) {
 
   const still = () => {
     rings.length = 0;
-    const reach = Math.min(w * 0.6, 760);
+    const reach = Math.min(w * 0.5, 620);
     [0.12, 0.3, 0.5, 0.72, 0.94].forEach((k, i) => rings.push({ x: source.x, y: source.y, r: reach * k, strength: 0.9 - i * 0.12, reach: reach * 1.05, color: TINTS[i % TINTS.length] }));
     draw();
   };
@@ -106,8 +107,9 @@ if (hero && water && water.getContext) {
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     const m = mark && mark.getBoundingClientRect();
     source = m && m.width
-      ? { x: m.left + m.width / 2 - box.left, y: m.bottom - box.top + Math.min(90, h * 0.09) }
-      : { x: w / 2, y: h * 0.55 };
+      ? { x: m.left + m.width / 2 - box.left, y: m.bottom - box.top + Math.min(120, h * 0.13) }
+      // No logo on narrow screens: the drop lands in the free space above the headline.
+      : { x: w * 0.62, y: h * 0.15 };
     if (reducedMotion) still();
     else draw();
   };
@@ -119,7 +121,7 @@ if (hero && water && water.getContext) {
     const dt = Math.min(0.05, Math.max(0, (now - last) / 1000));
     last = now;
     if (now > nextDrop) {
-      add(source.x, source.y, 0.9, Math.min(w * 0.6, 760), 72);
+      add(source.x, source.y, 0.9, Math.min(w * 0.5, 620), 72);
       nextDrop = now + 2600 + Math.random() * 1000;
     }
     if (now > nextRain) {
@@ -150,10 +152,10 @@ if (hero && water && water.getContext) {
   if (!reducedMotion) {
     // The first drop lands right away, with a couple of rings already spreading.
     layout();
-    add(source.x, source.y, 0.9, Math.min(w * 0.6, 760), 72);
-    rings[rings.length - 1].r = Math.min(w * 0.6, 760) * 0.45;
-    add(source.x, source.y, 0.9, Math.min(w * 0.6, 760), 72);
-    rings[rings.length - 1].r = Math.min(w * 0.6, 760) * 0.15;
+    add(source.x, source.y, 0.9, Math.min(w * 0.5, 620), 72);
+    rings[rings.length - 1].r = Math.min(w * 0.5, 620) * 0.45;
+    add(source.x, source.y, 0.9, Math.min(w * 0.5, 620), 72);
+    rings[rings.length - 1].r = Math.min(w * 0.5, 620) * 0.15;
     nextDrop = performance.now() + 1800;
 
     let lastMove = { x: -999, y: -999, t: 0 };
@@ -187,47 +189,27 @@ if (hero && water && water.getContext) {
   layout();
 }
 
-// Manifesto: the sentence is split into words that light up as it scrolls through the viewport.
-const reveal = document.querySelector("[data-reveal]");
-if (reveal) {
-  const words = [];
-  const split = (node) => {
-    [...node.childNodes].forEach((child) => {
-      if (child.nodeType !== Node.TEXT_NODE) { split(child); return; }
-      const frag = document.createDocumentFragment();
-      child.textContent.split(/(\s+)/).forEach((part) => {
-        if (!part) return;
-        if (/^\s+$/.test(part)) { frag.append(part); return; }
-        const span = document.createElement("span");
-        span.className = "w";
-        span.textContent = part;
-        words.push(span);
-        frag.append(span);
-      });
-      child.replaceWith(frag);
-    });
-  };
-  split(reveal);
-
-  const update = () => {
-    const box = reveal.getBoundingClientRect();
-    const vh = window.innerHeight;
-    const progress = Math.min(1, Math.max(0, (vh * 0.85 - box.top) / (box.height + vh * 0.25)));
-    const lit = Math.round(progress * words.length);
-    words.forEach((span, i) => span.classList.toggle("on", i < lit));
-  };
-
-  if (reducedMotion) words.forEach((span) => span.classList.add("on"));
-  else {
-    let queued = false;
-    window.addEventListener("scroll", () => {
-      if (queued) return;
-      queued = true;
-      requestAnimationFrame(() => { queued = false; update(); });
-    }, { passive: true });
-    update();
-  }
-}
+// Game card: the thumbnails switch the big view between the trailer loop and screenshots.
+document.querySelectorAll("[data-gallery]").forEach((card) => {
+  const video = card.querySelector("[data-gallery-video]");
+  const still = card.querySelector("[data-gallery-still]");
+  const thumbs = [...card.querySelectorAll("[data-shot]")];
+  thumbs.forEach((thumb) => thumb.addEventListener("click", () => {
+    thumbs.forEach((t) => t.setAttribute("aria-pressed", String(t === thumb)));
+    const src = thumb.dataset.shot;
+    if (!src) {
+      still.hidden = true;
+      video.hidden = false;
+      if (!reducedMotion && !lightMode) video.play().catch(() => {});
+      return;
+    }
+    still.src = src;
+    still.alt = thumb.querySelector("img").alt;
+    still.hidden = false;
+    video.pause();
+    video.hidden = true;
+  }));
+});
 
 // Videos marked data-autoplay play only while on screen.
 const videos = [...document.querySelectorAll("video[data-autoplay]")];

@@ -28,7 +28,7 @@
   <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
 
   <link rel="preload" href="../assets/fonts/jost-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="../assets/css/style.css?v=20261024205934">
+  <link rel="stylesheet" href="../assets/css/style.css?v=20261025175738">
 
   <script type="application/ld+json">
   {
@@ -52,134 +52,129 @@
       </a>
       <nav class="site-nav" aria-label="Основное меню">
         <a href="#games">Игры</a>
-        <a href="#studio">Студия</a>
         <a href="#contact">Контакты</a>
-        <a class="nav-keep" href="../" hreflang="en" lang="en" aria-label="English version">EN</a>
       </nav>
+      <div class="header-end">
+        <a class="lang" href="../" hreflang="en" lang="en" aria-label="English version">EN</a>
+        <a class="btn btn-primary btn-small" data-link="game" href="#" target="_blank" rel="noopener">HOPE: Survival</a>
+      </div>
     </div>
   </header>
 
   <main id="main">
     <section class="hero">
       <canvas class="water" data-water aria-hidden="true"></canvas>
-      <div class="hero-center">
-        <img class="hero-mark" src="../assets/img/studio-logo.png" width="720" height="510" alt="Thirst Games Studio">
-      </div>
-      <div class="wrap hero-foot">
-        <h1>Делаем игры о том, как <em class="shine">выстоять</em></h1>
+      <div class="wrap hero-grid">
         <div>
-          <p class="lead">Независимая команда ветеранов индустрии. Делаем кооперативные игры на выживание на Unreal Engine 5.</p>
+          <p class="eyebrow">Независимая игровая студия</p>
+          <h1>Игры о выживании <span class="hl">для игры вместе</span></h1>
+          <p class="lead">Независимая команда ветеранов индустрии. Делаем кооперативные игры на выживание на Unreal Engine 5 — в одиночку или всем отрядом.</p>
           <div class="actions">
-            <a class="btn btn-primary" href="#games">Наша игра</a>
-            <a class="btn btn-ghost" data-link="discord" data-pending="Discord скоро" href="#" target="_blank" rel="noopener">Discord</a>
+            <a class="btn btn-primary" href="#games">Наши игры</a>
+            <a class="btn" data-link="discord" data-pending="Discord скоро" href="#" target="_blank" rel="noopener">Discord</a>
           </div>
         </div>
+        <img class="hero-mark" src="../assets/img/studio-logo.png" width="720" height="510" alt="Thirst Games Studio">
       </div>
     </section>
 
-    <section class="section manifesto" id="studio">
+    <section class="section" id="games">
       <div class="wrap">
-        <p class="eyebrow">Студия</p>
-        <p data-reveal>Мы годами делали чужие игры — <em>Atomic Heart</em>, <em>Beholder</em>, <em>Guns of Boom</em>. Теперь делаем выживание, в которое сами всегда хотели играть.</p>
-        <ul class="manifesto-notes">
-          <li><strong>Маленькие и независимые</strong>Программирование, арт, геймдизайн и продюсирование — всё своими силами.</li>
-          <li><strong>Глубоко в Unreal</strong>Мультиплеер, геймплейные системы, бой и оптимизация — то, что мы умеем лучше всего.</li>
-          <li><strong>Откуда мы</strong>Mundfish, Playrix, Social Quantum и Alawar, а в списке проектов ещё INSOMNIA и Armored Warfare.</li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="game" id="games">
-      <video class="game-bg" data-autoplay muted loop playsinline preload="none" poster="../assets/video/game.webp" aria-hidden="true">
-        <source src="../assets/video/game-av1.mp4" type="video/mp4; codecs=&quot;av01.0.05M.08&quot;">
-        <source src="../assets/video/game.mp4" type="video/mp4">
-      </video>
-      <div class="game-shade"></div>
-      <div class="wrap">
-        <p class="eyebrow">Наша игра · в разработке</p>
-        <h2><img class="game-logo" src="../assets/img/hope-logo.webp" width="900" height="561" alt="HOPE: Survival" loading="lazy"></h2>
-        <p class="game-pitch">Кооперативное выживание с видом сверху на острове в карантине. Заражённые охотятся на звук. Днём — вылазки за припасами, а бывают ночи, когда к базе приходит орда, которую вы сами привели.</p>
-        <ul class="facts"><li>Соло или кооп 1–8</li><li>PC · Steam</li><li>Unreal Engine 5</li><li>Дата выхода — позже</li></ul>
-        <div class="actions">
-          <a class="btn btn-primary" data-link="game" href="#" target="_blank" rel="noopener">Сайт игры</a>
-          <a class="btn btn-ghost" data-link="trailer" href="#" target="_blank" rel="noopener">Трейлер</a>
+        <div class="section-head">
+          <p class="eyebrow">Следующая игра студии</p>
+          <h2>Наши <span class="hl">игры</span></h2>
         </div>
+
+        <article class="game-card" data-gallery>
+          <div>
+            <div class="game-view">
+              <video data-autoplay data-gallery-video muted loop playsinline preload="none" poster="../assets/video/game.webp" aria-label="Геймплей HOPE: Survival">
+                <source src="../assets/video/game-av1.mp4" type="video/mp4; codecs=&quot;av01.0.05M.08&quot;">
+                <source src="../assets/video/game.mp4" type="video/mp4">
+              </video>
+              <img class="game-still" data-gallery-still src="" alt="" hidden>
+              <img class="game-logo-over" src="../assets/img/hope-logo.webp" width="900" height="561" alt="" loading="lazy">
+            </div>
+            <ul class="thumbs">
+              <li><button type="button" data-shot="" aria-pressed="true"><img src="../assets/video/game.webp" width="1920" height="1080" alt="Трейлер" loading="lazy"><span class="play-mark"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4l14 8-14 8z"/></svg></span></button></li>
+              <li><button type="button" data-shot="../assets/img/hope/01-compound.webp" aria-pressed="false"><img src="../assets/img/hope/01-compound-thumb.webp" width="800" height="450" alt="Заражённые штурмуют укреплённый комплекс" loading="lazy"></button></li>
+              <li><button type="button" data-shot="../assets/img/hope/06-horde.webp" aria-pressed="false"><img src="../assets/img/hope/06-horde-thumb.webp" width="800" height="450" alt="Орда на складском дворе" loading="lazy"></button></li>
+              <li><button type="button" data-shot="../assets/img/hope/03-night-fires.webp" aria-pressed="false"><img src="../assets/img/hope/03-night-fires-thumb.webp" width="800" height="450" alt="Ночная оборона среди пожаров" loading="lazy"></button></li>
+              <li><button type="button" data-shot="../assets/img/hope/08-snow.webp" aria-pressed="false"><img src="../assets/img/hope/08-snow-thumb.webp" width="800" height="450" alt="Бой в снегу" loading="lazy"></button></li>
+            </ul>
+          </div>
+          <div class="game-info">
+            <ul class="pills"><li>В разработке</li><li>Кооп 1–8</li></ul>
+            <h3>HOPE: <span class="hl">Survival</span></h3>
+            <p>Кооперативное выживание с видом сверху на острове в карантине. Заражённые охотятся на звук. Днём — вылазки за припасами, а бывают ночи, когда к базе приходит орда, которую вы сами привели.</p>
+            <dl class="facts">
+              <div><dt>Жанр</dt><dd>Кооперативное выживание, вид сверху</dd></div>
+              <div><dt>Режим</dt><dd>Соло · онлайн-кооп, 1–8 игроков</dd></div>
+              <div><dt>Платформа</dt><dd>PC · Steam</dd></div>
+              <div><dt>Движок</dt><dd>Unreal Engine 5</dd></div>
+              <div><dt>Выход</dt><dd>Дата будет объявлена</dd></div>
+            </dl>
+            <div class="actions">
+              <a class="btn btn-primary" data-link="steam" data-pending="Страница Steam скоро" href="#" target="_blank" rel="noopener">В желаемое в Steam</a>
+              <a class="btn" data-link="game" href="#" target="_blank" rel="noopener">Сайт игры</a>
+            </div>
+            <div class="game-links">
+              <a data-link="trailer" href="#" target="_blank" rel="noopener">Смотреть трейлер</a>
+              <a data-link="presskit" href="#" target="_blank" rel="noopener">Пресс-кит</a>
+            </div>
+          </div>
+        </article>
       </div>
     </section>
 
-    <section class="section loops-section">
+    <section class="section" id="contact">
       <div class="wrap">
-        <ul class="loops">
-          <li>
-            <video data-autoplay muted loop playsinline preload="none" poster="../assets/video/feature-noise.webp" width="960" height="540" aria-label="Взрыв подманивает толпу заражённых">
-              <source src="../assets/video/feature-noise.mp4" type="video/mp4">
-            </video>
-            <h3>Шум — приманка</h3>
-            <p>Выстрелы, взрывы, механизмы — заражённые слышат всё.</p>
-          </li>
-          <li>
-            <video data-autoplay muted loop playsinline preload="none" poster="../assets/video/feature-night.webp" width="960" height="540" aria-label="Выжившие держат базу ночью среди пожаров">
-              <source src="../assets/video/feature-night.mp4" type="video/mp4">
-            </video>
-            <h3>Они вернутся</h3>
-            <p>Пережили одну орду — следующая будет хуже.</p>
-          </li>
-          <li>
-            <video data-autoplay muted loop playsinline preload="none" poster="../assets/video/feature-base.webp" width="960" height="540" aria-label="На базе строится мастерская">
-              <source src="../assets/video/feature-base.mp4" type="video/mp4">
-            </video>
-            <h3>Последний тёплый огонёк</h3>
-            <p>Верстаки, печь, ворота и ловушки.</p>
-          </li>
-          <li>
-            <video data-autoplay muted loop playsinline preload="none" poster="../assets/video/feature-coop.webp" width="960" height="540" aria-label="Выжившие пробиваются через парковку">
-              <source src="../assets/video/feature-coop.mp4" type="video/mp4">
-            </video>
-            <h3>Выживать вместе</h3>
-            <p>В одиночку или с семью друзьями.</p>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="wrap">
-        <p class="eyebrow">Что мы умеем</p>
-        <h2>В чём мы сильны</h2>
-        <ul class="skills">
-          <li><strong>Мультиплеер</strong><span>Онлайн-кооператив до восьми игроков — вся сетевая часть наша, от начала до конца.</span></li>
-          <li><strong>Геймплейные системы</strong><span>Выживание, крафт и ИИ — системы, которые реагируют друг на друга и на игрока.</span></li>
-          <li><strong>Бой</strong><span>Ближний и дальний бой, который хорошо читается с камеры сверху.</span></li>
-          <li><strong>Оптимизация</strong><span>Большие миры с подгрузкой, рассчитанные на полный отряд на экране.</span></li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="section contact" id="contact">
-      <div class="wrap">
-        <p class="eyebrow">Контакты</p>
-        <h2 class="shine">Напишите нам</h2>
-        <ul class="contact-list">
-          <li><span>Бизнес и издание</span><a data-link="email" data-pending="Почта — скоро" href="#">Почта</a></li>
-          <li><span>Пресса и авторы</span><a data-link="presskit" href="#" target="_blank" rel="noopener">Пресс-кит</a></li>
-          <li><span>Игроки</span><a data-link="discord" data-pending="Discord скоро" href="#" target="_blank" rel="noopener">Discord</a></li>
-        </ul>
+        <div class="section-head">
+          <p class="eyebrow">Контакты</p>
+          <h2>Пишите <span class="hl">нам</span></h2>
+        </div>
+        <div class="contacts">
+          <div class="contact">
+            <p class="contact-label">Бизнес · Издание</p>
+            <a class="contact-main" data-link="email" data-pending="Почта скоро" href="#">Почта скоро</a>
+            <p>Издатели, партнёры и платформы.</p>
+          </div>
+          <div class="contact">
+            <p class="contact-label">Пресса · Авторы</p>
+            <a class="contact-main" data-link="presskit" href="#" target="_blank" rel="noopener">Пресс-кит</a>
+            <p>Скриншоты, GIF, логотип и трейлер HOPE: Survival.</p>
+          </div>
+          <div class="contact">
+            <p class="contact-label">Сообщество</p>
+            <a class="contact-main" data-link="discord" href="#" target="_blank" rel="noopener">Discord</a>
+            <p>Новости разработки, плейтесты и с кем сыграть.</p>
+          </div>
+          <div class="contact">
+            <p class="contact-label">Мы в сети</p>
+            <ul class="follow">
+              <li><a data-link="youtube" href="#" target="_blank" rel="noopener">YouTube</a></li>
+              <li><a data-link="discord" href="#" target="_blank" rel="noopener">Discord</a></li>
+              <li><a data-link="steam" href="#" target="_blank" rel="noopener">Steam</a></li>
+            </ul>
+          </div>
+        </div>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
     <div class="wrap">
+      <a class="wordmark" href="./" aria-label="Thirst Games Studio — на главную"><img src="../assets/img/studio-wordmark.png" width="900" height="240" alt="Thirst Games Studio"></a>
       <span>© <span data-year>2026</span> Thirst Games Studio</span>
       <nav aria-label="Ссылки в подвале">
         <a data-link="game" href="#" target="_blank" rel="noopener">HOPE: Survival</a>
-        <a data-link="discord" href="#" target="_blank" rel="noopener">Discord</a>
-        <a data-link="trailer" href="#" target="_blank" rel="noopener">YouTube</a>
         <a data-link="presskit" href="#" target="_blank" rel="noopener">Пресс-кит</a>
+        <a data-link="discord" href="#" target="_blank" rel="noopener">Discord</a>
+        <a data-link="youtube" href="#" target="_blank" rel="noopener">YouTube</a>
       </nav>
     </div>
   </footer>
 
-  <script src="../assets/js/site.js?v=20261024205934"></script>
+  <script src="../assets/js/site.js?v=20261025175738"></script>
 </body>
 </html>
