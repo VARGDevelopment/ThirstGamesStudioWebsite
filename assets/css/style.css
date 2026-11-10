@@ -345,7 +345,7 @@ section[id] { scroll-margin-top: 72px; }
 
 #games::before {
   inset: -60px;
-  background: url("../img/hope/06-horde.webp") center / cover;
+  background: url("../img/hope/05-explosion.webp") center / cover;
   filter: blur(42px) saturate(1.6) brightness(0.55);
   opacity: 0.75;
 }
